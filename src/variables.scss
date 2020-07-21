@@ -1,6 +1,33 @@
 // variables
-$main-color: #00B16A;
-$primary-font-color: white;
+$view-mobile-xs: 320px;
+$view-mobile: 767px;
+$view-tablet: 768px;
+$view-desktop: 992px;
+$view-larger-desktop: 1200px;
 
-$gt: min-content auto / minmax(2em, 1fr) minmax(250px, 750px)
-minmax(2em, 1fr);
+:root {
+    --main-color: #00B16A;
+    --secondary-color: #085132;
+    --primary-font-color: white;
+    --secondary-font-color: #9BD3BB;
+    --gt: min-content auto / minmax(2em, 1fr) minmax(250px, 1200px)
+    minmax(2em, 1fr);
+    --bg-color: #EDEDED;
+
+    @media screen and (max-width: $view-desktop) {
+
+    }
+
+    @media screen and (max-width: $view-mobile) {
+
+    }
+
+    @media screen and (max-width: $view-mobile-xs) {
+        font-size: 13px;
+    }
+}
+
+
+
+
+

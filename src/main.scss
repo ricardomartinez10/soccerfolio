@@ -3,6 +3,39 @@
 * {
     box-sizing: border-box;
 }
-body {
 
+:root {
+    font-size: 16px;    
 }
+
+body {
+    background-color: var(--bg-color);
+}
+
+.main-container {
+    display: grid;
+    grid: var(--gt);
+}
+
+section {
+    display: grid;
+    grid-column: 1 / -1;
+}
+
+.home-section +  section {
+    margin-top: 5rem;
+}
+
+.home-section {
+    grid: min-content auto / minmax(2em, 1fr) minmax(150px, 810px) minmax(2em, 1fr);
+}
+
+.content {
+    display: grid;
+    grid-column-start: 2;
+}
+
+@import '../src/components/about/about.scss';
+@import '../src/components/nav/navigation.scss';
+@import '../src/components/shared/soccerTitle/soccerTittle.scss';
+@import '../src/components/soccer-field/soccer-field.scss';

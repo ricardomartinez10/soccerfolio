@@ -1,19 +1,10 @@
-@import '../../variables.scss';
-section {
-    display: grid;
-    grid: $gt;
-}
+
 nav {
     display: grid;
-    background: $main-color;
-    grid-column: 1 / -1;
-    grid: $gt;
+    background: var(--main-color);
+    grid: var(--gt);
     padding: 15px 0;
-
-    .content {
-        display: grid;
-        grid-column-start: 2;
-    }
+    box-shadow: 0 3px 8px rgba(0, 0, 0, 0.1);
 
     img {
         grid-column: 1;
@@ -26,9 +17,19 @@ nav {
         grid-column: 3;
         justify-content: space-between;
         align-items: center;
-        color: $primary-font-color;
+        color: var(--primary-font-color);
         li {
             display: inline-block;
+
+            a:hover {
+                cursor: pointer;
+                border-bottom: 3px solid currentColor;
+            }
+
+            a {
+                color: currentColor;
+                text-decoration: none;
+            }
         }
     }
 }

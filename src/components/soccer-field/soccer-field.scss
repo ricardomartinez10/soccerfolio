@@ -1,0 +1,164 @@
+@import '../../variables.scss';
+
+:root {
+    --space-unit:  1px;
+    --space-unit-corner: 1px;
+    --penalty-area-height: calc(135 * var(--space-unit));
+    --penalty-area-width: calc(300 * var(--space-unit));
+    --soccer-border-width: calc(7 * var(--space-unit));
+    --circle-arc : calc(7 * var(--space-unit));
+    --circle-arc-padding: calc(-35 * var(--space-unit));
+    --semi-circle-width: calc(186 * var(--space-unit));
+    --semi-circle-height: calc(176 * var(--space-unit));
+    --center-circle-diameter: calc(200 * var(--space-unit));
+    --area-border-radius: calc(13 * var(--space-unit));
+    --field-border-radius: calc(13 * var(--space-unit));
+    --top-corner: calc(-28 * var(--space-unit-corner));
+    --left-corner: calc(-28 * var(--space-unit-corner));
+}
+
+@media screen and (max-width: $view-desktop) {
+    :root {
+         --space-unit:  0.8px;
+         
+    }  
+}
+
+@media screen and (max-width: $view-mobile) {
+    :root {
+         --space-unit:  0.5px;
+         --space-unit-corner: 0.5px;
+    }  
+}
+
+@media screen and (max-width: $view-mobile-xs) {
+    :root {
+         --space-unit-corner: 0.35px;
+    }  
+}
+
+@mixin penalty-area-lines {
+    border-bottom: var(--soccer-border-width) solid var(--main-color);
+    border-left: var(--soccer-border-width) solid var(--main-color);
+    border-right: var(--soccer-border-width) solid var(--main-color);
+    border-radius: 0 0 var(--area-border-radius) var(--area-border-radius);
+}
+
+@mixin center-field-circle {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+}
+
+.field {
+    position: relative;
+    justify-items: center;
+    height: 900px;
+    border: var(--soccer-border-width) solid var(--main-color);
+    border-radius: var(--field-border-radius);
+    overflow: hidden;
+
+    .penalty-area {
+        position: absolute;
+        background: var(--bg-color);
+        display: grid;
+        justify-items: center;
+        height: var(--penalty-area-height);
+        width: var(--penalty-area-width);
+        @include penalty-area-lines;
+
+        .goal-area {
+            position: absolute;
+            height: 38%;
+            width: 48%;
+            @include penalty-area-lines;
+        }
+    
+        .penalty-arc {
+            position: absolute;
+            width: 0;
+            height: 0;
+            border: var(--circle-arc) solid var(--main-color);
+            border-radius: 50%;
+            bottom: 0;
+            left: 50%;
+            transform: translate(-50%, var(--circle-arc-padding));
+        }
+    
+        .semi-circle {
+            position: absolute;
+            width: var(--semi-circle-width);
+            height: var(--semi-circle-height);
+            border: var(--soccer-border-width) solid var(--main-color);
+            border-radius: 50%;
+            z-index: -1;
+        }
+    }
+
+    .center-circle {
+        @include center-field-circle;
+        height: var(--center-circle-diameter);
+        width: var(--center-circle-diameter);
+        border: var(--soccer-border-width) solid var(--main-color);
+        border-radius: 50%;
+    }
+
+    .center-line {
+        @include center-field-circle;
+        height: var(--soccer-border-width);
+        width: 100%;
+        background: var(--main-color);
+    }
+
+    .kick-point {
+        @include center-field-circle;
+        width: 0;
+        height: 0;
+        border-radius: 50%;
+        border: calc(var(--circle-arc) + 1px) solid var(--main-color);
+
+    }
+
+    @mixin corner {
+        content: "";
+        position: absolute;
+        height: 0;
+        width: 6%;
+        margin:  0 0 0 0;
+        padding-bottom: 6%;
+        border: var(--soccer-border-width) solid var(--main-color);
+        border-radius: 50%;
+    }
+
+    .corner1::after {
+        @include corner;
+        top: var(--top-corner);
+        left: var(--left-corner)
+    }
+
+    .corner1::before {
+        @include corner;
+        top: var(--top-corner);
+        right: var(--left-corner)
+    }
+
+    .corner2::after {
+        @include corner;
+        bottom: var(--top-corner);
+        left: var(--left-corner);
+    }
+
+    .corner2::before {
+        @include corner;
+        bottom: var(--top-corner);
+        right: var(--left-corner);
+    }
+
+    .wrapper-area-opponent {
+        position: absolute;
+        bottom: 0;
+        display: grid;
+        justify-items: center;
+        transform: scaleY(-1);
+    }
+}

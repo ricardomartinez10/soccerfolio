@@ -1,13 +1,20 @@
 import React from 'react';
-import './App.css';
-import './main.scss'
-import Navigation from './components/nav/nav.js'
+import './main.scss';
+import Navigation from './components/nav/nav'
+import About from './components/about/about';
+import SoccerField from './components/soccer-field/soccerField'
+import Tecnologies from './components/tecnologies/tecnologies';
+
 
 function App() {
   return (
-      <section>
-        <Navigation></Navigation>
-      </section>
+    <div className="main-container">
+      <Navigation></Navigation>
+      <About></About>
+      <SoccerField>
+        <Tecnologies></Tecnologies>
+      </SoccerField>
+    </div>
   );
 }
 

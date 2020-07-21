@@ -1,0 +1,86 @@
+@import '../../variables.scss';
+
+.container {
+    grid-column: 1 / -1;
+    grid: var(--gt);
+}
+
+.home-section.about {
+    .content {
+        display: grid;
+        grid-template-areas:
+        ". title title."
+        ". image text .";
+        align-items: center;
+
+        @media screen and (max-width: $view-mobile) {
+            row-gap: 40px;
+            grid-template-areas:
+            ". title ."
+            ". image ."
+            ". text .";
+        }
+
+        .title-container {
+            grid-area: title;
+            margin: 6rem 0;
+        }
+        
+        .profile-container {
+            grid-area: image;
+            background: var(--main-color);
+            border-radius: 30px;
+            display: grid;
+            justify-content: center;
+
+            img {
+                width: 268px;
+                padding: 30px 20px 0 20px;
+            }
+
+            h2 {
+                color: var(--primary-font-color);
+                margin: 12px 0;
+            }
+
+            .dev-container {
+                display: grid;
+                grid-template-columns: minmax(30px, 1fr) auto minmax(30px, 1fr);
+
+                p {
+                    margin: 0 0 22px 0;
+                    padding: 10px 0;
+                    color: var(--primary-font-color);
+                    grid-column-start: 2;
+                    font-size: 1.2rem;
+                    font-weight: 200;
+                    border-top: 3px solid var(--primary-font-color);
+                    border-bottom: 3px solid var(--primary-font-color);
+                }
+            }
+        }
+
+        .profile-text {
+            grid-area: text;
+            position: relative;
+            right: 8px;
+
+            @media screen and (max-width: $view-mobile) {
+                position: initial;
+            }
+
+            p {
+                background: var(--secondary-font-color);
+                color: var(--secondary-color);
+                padding: 20px;
+                border: 8px solid var(--main-color);
+                border-radius: 10px;
+                line-height: 1.8rem;
+                margin: 0;
+            }
+        }
+    }
+    h1, h2, p {
+        text-align: center;
+    }
+}
